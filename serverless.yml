@@ -1,0 +1,32 @@
+service:
+  name: teste-serverless
+
+plugins:
+  - serverless-offline
+  - serverless-webpack
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+provider:
+  name: aws
+
+functions:
+  hello:
+    handler: src/functions/hello.handle
+    events:
+      - http:
+          path: /hello
+          method: GET
+          cors: true
+  bye:
+    handler: src/functions/bye.handle
+    events:
+      - http:
+          path: /bye
+          method: GET
+          cors: true
+      
+
